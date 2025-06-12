@@ -25,15 +25,12 @@
   "contributors": [],
   "scripts": {
     "test": "",
-    "build": "tsc && echo 'Build concluído!' || echo 'Erro na compilação'",
-    "dev": "set NODE_OPTIONS=--loader ts-node/esm && node src/server.ts",
-    "api": "npx tsc && node dist/server.js"
+    "dev": "set NODE_OPTIONS=--loader ts-node/esm && node src/server.ts"
   },
   "dependencies": {
     "@types/mongoose": "^5.11.96",
     "express": "^4.18.2",
-    "mongodb": "^6.17.0",
-    "mongoose": "^8.15.1"
+    "mongodb": "^6.17.0"
   },
   "devDependencies": {
     "@types/express": "^5.0.3",

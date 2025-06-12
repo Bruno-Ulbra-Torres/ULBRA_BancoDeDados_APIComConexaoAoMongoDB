@@ -1,21 +1,24 @@
 
 import { MongoClient } from 'mongodb';
 
-const connectDB: Function  = async (): Promise<void> => {
+class MongoConnection {
 
-    const STRING_CONNECTION: string = `mongodb+srv://admin:admin@cluster0.b7qghol.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
-    // const STRING_CONNECTION: string = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.b7qghol.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+    protected client: MongoClient = new MongoClient('mongodb+srv://admin:admin@cluster0.b7qghol.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+   
+    constructor(){};
 
-    try{
-        const client = new MongoClient(STRING_CONNECTION);
-        await client.connect();
-        console.log("Conectado ao mongo");
-    }
-    catch(error){
-        console.error("\nErro as se conectar ao mongo:\n ", error);
-        process.exit(1);
+    async connectDB(): Promise<void> {
+        try{      
+            await this.client.connect(); 
+        }
+        catch(error){
+            console.error("\nErro as se conectar ao mongo:\n ", error);
+        }
+    };
 
-    }
-}
+    
 
-export default connectDB;
+};
+
+
+export default MongoConnection;
