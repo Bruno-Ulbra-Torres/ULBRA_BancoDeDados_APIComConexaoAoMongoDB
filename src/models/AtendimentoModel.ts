@@ -1,9 +1,15 @@
-import { Collection } from "mongodb";
-import MongoDatabaseConnection from "../services/mongoDatabaseConnection.ts";
+import { Collection, Db } from "mongodb";
+import databaseService from "../services/databaseService.ts";
+import IAtendimentoModel from "../interfaces/models/IAtendimentoModel.ts";
 
+const db:Db = databaseService.connection.db(`${process.env.DB_NAME}`);
+const collection: Collection = db.collection("atendimentos");
 
-const collection: Collection = new MongoDatabaseConnection("atendimentos").collection;
+const atendimentoModel: IAtendimentoModel = {
+    
+    findAtendimentos: async function (): Promise<Array<any>> {
+        return collection.find().toArray();
+    },
 
-export async function getAtedimentos(): Promise<Array<any>> {
-    return collection.find().toArray();
 };
+export default atendimentoModel;

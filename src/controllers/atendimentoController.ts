@@ -1,9 +1,20 @@
 import { Request, Response } from "express";
-import { getAtedimentos } from "../models/atendimentoModel.ts";
+import atendimentoModel from "../models/atendimentoModel.ts";
+import IAtendiementoController from "../interfaces/controllers/IAtendimentosController.ts";
 
+const atendimentoController: IAtendiementoController = {
 
-export async function getAllAtedimentos(req: Request, res: Response): Promise<void> {
-    const atendimentos = await getAtedimentos();
-    res.status(200).json(atendimentos);
+    async findAllAtendimentos(req: Request, res: Response): Promise<void> {
+        try{
+            const listAtendimentos = await atendimentoModel.findAtendimentos();
+            res.status(200).send(listAtendimentos);
+        }
+        catch(error: any){
+            res.status(404).send(`\nHouve um erro na requisição:\n ${error}`);
+        }
+    },
 };
+
+export default atendimentoController;
+
 
