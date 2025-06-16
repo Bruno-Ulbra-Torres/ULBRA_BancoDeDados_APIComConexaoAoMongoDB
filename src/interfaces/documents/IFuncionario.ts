@@ -2,8 +2,8 @@ import { ObjectId } from "mongodb";
 
 export default interface IFuncionario{
 
-    _id: ObjectId;
+    _id: string;
     nome: string;
-    cargo: "Gerente" | "Vendedor" | "Atendente" | "Mecânico";
+    cargo: string;
 
 }

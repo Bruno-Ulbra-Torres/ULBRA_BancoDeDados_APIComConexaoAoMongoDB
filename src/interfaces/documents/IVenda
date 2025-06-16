@@ -1,0 +1,14 @@
+import { Date } from "mongoose";
+import IVeiculo from "./INewVeiculo";
+import IFuncionario from "./INewFuncionario";
+import ICliente from "./INewCliente";
+
+export default interface IVenda{
+
+    _id: string;
+    data: Date;
+    veiculo: IVeiculo;
+    vendedor: IFuncionario;
+    cliente: ICliente;
+
+}

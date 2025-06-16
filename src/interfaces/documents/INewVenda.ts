@@ -1,10 +1,10 @@
 import { ObjectId } from "mongodb";
 import { Date } from "mongoose";
-import IVeiculo from "./IVeiculo";
-import IFuncionario from "./IFuncionario";
-import ICliente from "./ICliente";
+import IVeiculo from "./INewVeiculo";
+import IFuncionario from "./INewFuncionario";
+import ICliente from "./INewCliente";
 
-export default interface IVenda{
+export default interface INewVenda{
 
     _id: ObjectId;
     data: Date;
