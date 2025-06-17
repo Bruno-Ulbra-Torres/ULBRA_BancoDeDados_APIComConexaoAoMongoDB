@@ -4,7 +4,7 @@ import IVeiculo from "./IVeiculo";
 import IFuncionario from "./IFuncionario";
 import ICliente from "./ICliente";
 
-export default interface IVenda{
+export default interface INewVenda{
 
     _id: ObjectId;
     data: Date;

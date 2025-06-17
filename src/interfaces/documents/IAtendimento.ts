@@ -3,7 +3,7 @@ import IFuncionario from "./IFuncionario";
 import IVeiculo from "./IVeiculo";
 import ICliente from "./ICliente";
 
-export default interface IAtendimento{
+export default interface INewAtendimento{
 
     _id: ObjectId;
     funcionario: IFuncionario;
