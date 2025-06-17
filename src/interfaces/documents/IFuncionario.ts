@@ -1,9 +1,9 @@
 import { ObjectId } from "mongodb";
 
-export default interface IFuncionario{
+export default interface INewFuncionario{
 
-    _id: string;
+    _id: ObjectId;
     nome: string;
-    cargo: string;
+    cargo: "Gerente" | "Vendedor" | "Atendente" | "Mecânico";
 
 }

@@ -2,7 +2,7 @@ import { ObjectId } from "mongodb";
 
 export default interface INewCliente{
 
-    _id: string;
+    _id: ObjectId;
     nome: string;
     telefone: string;
 
