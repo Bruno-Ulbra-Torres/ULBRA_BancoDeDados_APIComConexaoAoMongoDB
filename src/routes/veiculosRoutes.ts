@@ -25,8 +25,8 @@ const veiculoRoutes = (app: Express)=>{
         }
 
         try{
-            const listVeiculos: Array<IVeiculo> = await veiculosController.findRecordById(id);
-            res.status(200).send(listVeiculos);
+            const veiculo: IVeiculo = await veiculosController.findRecordById(id);
+            res.status(200).send(veiculo);
         }
         catch(error: any){
             res.status(404).send(`\nHouve um erro na requisição:\n ${error}`);

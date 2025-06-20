@@ -1,8 +1,8 @@
-import { ObjectId } from "mongodb";
 
-export default interface INewCliente{
 
-    _id: ObjectId;
+export default interface ICliente{
+
+    _id: string;
     nome: string;
     telefone: string;
 

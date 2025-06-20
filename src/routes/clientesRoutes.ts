@@ -26,8 +26,8 @@ const clientesRoutes = (app: Express)=>{
         }
 
         try{
-            const listClientes: Array<ICliente> = await clientesController.findRecordById(id);
-            res.status(200).send(listClientes);
+            const cliente: ICliente = await clientesController.findRecordById(id);
+            res.status(200).send(cliente);
         }
         catch(error: any){
             res.status(404).send(`\nHouve um erro na requisição:\n ${error}`);

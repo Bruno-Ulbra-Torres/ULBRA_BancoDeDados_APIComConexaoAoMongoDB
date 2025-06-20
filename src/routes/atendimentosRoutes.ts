@@ -25,8 +25,8 @@ const atendimentosRoutes = (app: Express)=>{
         }
 
         try{
-            const listAtendimentos: Array<IAtendimento> = await atendimentosController.findRecordById(id);
-            res.status(200).send(listAtendimentos);
+            const atendimento: IAtendimento = await atendimentosController.findRecordById(id);
+            res.status(200).send(atendimento);
         }
         catch(error: any){
             res.status(404).send(`\nHouve um erro na requisição:\n ${error}`);

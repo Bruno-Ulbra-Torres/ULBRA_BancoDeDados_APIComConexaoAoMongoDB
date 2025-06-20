@@ -1,11 +1,37 @@
+import ClientesController from "../controllers/clientesController.ts";
+import FuncionariosController from "../controllers/funcionariosController.ts";
+import VeiculosController from "../controllers/veiculosController.ts";
+import ICliente from "../interfaces/documents/ICliente.ts";
+import IFuncionario from "../interfaces/documents/IFuncionario.ts";
+import IVeiculo from "../interfaces/documents/IVeiculo.ts";
+import IVenda from "../interfaces/documents/IVenda.ts";
 import CollectionModel from "./collectionsModel.ts";
 
 
 class VendasModel extends CollectionModel{
 
+  private funcionario: FuncionariosController;
+  private veiculo: VeiculosController;
+  private cliente: ClientesController;
+
   constructor(){
     super();
     this.collection = "vendas"
+    this.funcionario = new FuncionariosController();
+    this.veiculo = new VeiculosController();
+    this.cliente = new ClientesController();
+  }
+
+  async convertObjectIntoIVenda(nonFormatedObject: any): Promise<IVenda>{
+    let venda: IVenda = {
+      _id: nonFormatedObject._id ? nonFormatedObject._id : "",
+      data: nonFormatedObject.data ?new Date(nonFormatedObject.data) : new Date("00/00/00"),
+      veiculo: nonFormatedObject.veiculo ? await this.veiculo.findRecordById(nonFormatedObject.veiculo): {} as IVeiculo,
+      vendedor: nonFormatedObject.funcionario ? await this.funcionario.findRecordById(nonFormatedObject.funcionario): {} as IFuncionario,
+      cliente: nonFormatedObject.cliente ? await this.cliente.findRecordById(nonFormatedObject.cliente): {} as ICliente
+    }
+
+    return venda;
   }
 
 

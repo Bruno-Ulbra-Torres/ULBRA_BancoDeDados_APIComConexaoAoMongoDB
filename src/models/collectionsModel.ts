@@ -11,9 +11,10 @@ abstract class CollectionModel{
         return await records.find().toArray();
     };
 
-    async findRecordById(id: string): Promise<Array<any>> {
+    async findRecordById(id: string): Promise<any> {
         let records: Collection = await DatabaseService.getCollection(`${process.env.DB_NAME}`, this.collection);
-        return await records.find({ _id: new ObjectId(id) }).toArray();
+        let list: Array<any> = await records.find({ _id: new ObjectId(id) }).toArray();
+        return list[0];
     };
 
 }
