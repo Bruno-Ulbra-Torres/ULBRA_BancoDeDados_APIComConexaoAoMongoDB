@@ -5,10 +5,10 @@ import ICliente from "../interfaces/documents/ICliente.ts";
 import IFuncionario from "../interfaces/documents/IFuncionario.ts";
 import IVeiculo from "../interfaces/documents/IVeiculo.ts";
 import IVenda from "../interfaces/documents/IVenda.ts";
-import CollectionModel from "./collectionsModel.ts";
+import DatabaseService from "./databaseService.ts";
 
 
-class VendasModel extends CollectionModel{
+class VendasService extends DatabaseService{
 
   private funcionario: FuncionariosController;
   private veiculo: VeiculosController;
@@ -36,4 +36,4 @@ class VendasModel extends CollectionModel{
 
 
 };
-export default VendasModel;
+export default VendasService;

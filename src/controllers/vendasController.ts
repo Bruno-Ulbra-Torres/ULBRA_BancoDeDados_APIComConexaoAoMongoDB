@@ -1,28 +1,28 @@
-import VendasModel from "../models/vendasModel.ts";
+import VendasService from "../services/vendasService.ts";
 import ICollectionController from "../interfaces/ICollectionController.ts";
 import IVenda from "../interfaces/documents/IVenda.ts";
 
-const model = new VendasModel;
+const service = new VendasService;
 
 class VendasController implements ICollectionController{
 
-    collectionModel: VendasModel;
+    collectionService: VendasService;
 
     constructor(){
-        this.collectionModel = new VendasModel();
+        this.collectionService = new VendasService();
     }
 
     async findAllRecords(): Promise<Array<IVenda>> {
-        let vendas: Array<any> = await model.findRecords();
+        let vendas: Array<any> = await service.findRecords();
         let vendasFormatadas: Array<IVenda> = [];
 
-        vendas.forEach(async (item) => vendasFormatadas.push(await model.convertObjectIntoIVenda(item)));
+        vendas.forEach(async (item) => vendasFormatadas.push(await service.convertObjectIntoIVenda(item)));
 
         return vendasFormatadas;
     };
 
     async findRecordById(id: string): Promise<IVenda> {
-        return await model.convertObjectIntoIVenda(await model.findRecordById(id)); 
+        return await service.convertObjectIntoIVenda(await service.findRecordById(id)); 
     };
 };
 

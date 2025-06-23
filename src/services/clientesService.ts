@@ -1,8 +1,8 @@
-import CollectionModel from "./collectionsModel.ts";
 import ICliente from "../interfaces/documents/ICliente.ts";
+import DatabaseService from "./databaseService.ts";
 
 
-class ClientesModel extends CollectionModel{
+class ClientesService extends DatabaseService{
 
   constructor(){
     super();
@@ -22,4 +22,4 @@ class ClientesModel extends CollectionModel{
 
 
 };
-export default ClientesModel;
+export default ClientesService;

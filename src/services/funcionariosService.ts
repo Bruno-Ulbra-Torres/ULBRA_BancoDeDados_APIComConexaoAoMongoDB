@@ -1,7 +1,7 @@
-import CollectionModel from "./collectionsModel.ts";
 import IFuncionario from "../interfaces/documents/IFuncionario.ts";
+import DatabaseService from "./databaseService.ts";
 
-class FuncionariosModel extends CollectionModel{
+class FuncionariosService extends DatabaseService{
 
   constructor(){
     super();
@@ -21,4 +21,4 @@ class FuncionariosModel extends CollectionModel{
 
 
 };
-export default FuncionariosModel;
+export default FuncionariosService;
