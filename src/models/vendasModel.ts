@@ -27,7 +27,7 @@ class VendasModel extends CollectionModel{
       _id: nonFormatedObject._id ? nonFormatedObject._id : "",
       data: nonFormatedObject.data ?new Date(nonFormatedObject.data) : new Date("00/00/00"),
       veiculo: nonFormatedObject.veiculo ? await this.veiculo.findRecordById(nonFormatedObject.veiculo): {} as IVeiculo,
-      vendedor: nonFormatedObject.funcionario ? await this.funcionario.findRecordById(nonFormatedObject.funcionario): {} as IFuncionario,
+      vendedor: nonFormatedObject.vendedor ? await this.funcionario.findRecordById(nonFormatedObject.vendedor): {} as IFuncionario,
       cliente: nonFormatedObject.cliente ? await this.cliente.findRecordById(nonFormatedObject.cliente): {} as ICliente
     }
 
