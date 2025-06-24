@@ -1,7 +1,8 @@
-import CollectionModel from "./collectionsModel.ts";
-import IVeiculo from "../interfaces/documents/IVeiculo.ts";
 
-class VeiculosModel extends CollectionModel{
+import IVeiculo from "../interfaces/documents/IVeiculo.ts";
+import DatabaseService from "./databaseService.ts";
+
+class VeiculosService extends DatabaseService{
 
   constructor(){
     super();
@@ -21,4 +22,4 @@ class VeiculosModel extends CollectionModel{
   
 
 };
-export default VeiculosModel;
+export default VeiculosService;

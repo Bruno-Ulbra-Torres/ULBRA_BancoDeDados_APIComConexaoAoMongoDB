@@ -1,14 +1,14 @@
 import IAtendimento from "../interfaces/documents/IAtendimento.ts";
-import CollectionModel from "./collectionsModel.ts";
 import FuncionariosController from "../controllers/funcionariosController.ts";
 import VeiculosController from "../controllers/veiculosController.ts";
 import ClientesController from "../controllers/clientesController.ts";
 import IFuncionario from "../interfaces/documents/IFuncionario.ts";
 import IVeiculo from "../interfaces/documents/IVeiculo.ts";
 import ICliente from "../interfaces/documents/ICliente.ts";
+import DatabaseService from "./databaseService.ts";
 
 
-class AtendimentosModel extends CollectionModel{
+class AtendimentosService extends DatabaseService{
 
   private funcionario: FuncionariosController;
   private veiculo: VeiculosController;
@@ -37,4 +37,4 @@ class AtendimentosModel extends CollectionModel{
 
 
 };
-export default AtendimentosModel;
+export default AtendimentosService;

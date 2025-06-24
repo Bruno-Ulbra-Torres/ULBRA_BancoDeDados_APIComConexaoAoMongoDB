@@ -1,28 +1,28 @@
-import VeiculosModel from "../models/veiculosModel.ts";
+import VeiculosService from "../services/veiculosService.ts";
 import ICollectionController from "../interfaces/ICollectionController.ts";
 import IVeiculo from "../interfaces/documents/IVeiculo.ts";
 
-const model = new VeiculosModel;
+const service = new VeiculosService;
 
 class VeiculosController implements ICollectionController{
 
-    collectionModel: VeiculosModel;
+    collectionservice: VeiculosService;
 
     constructor(){
-        this.collectionModel = new VeiculosModel();
+        this.collectionservice = new VeiculosService();
     }
 
     async findAllRecords(): Promise<Array<IVeiculo>> {
-        let veiculos: Array<any> = await model.findRecords();
+        let veiculos: Array<any> = await service.findRecords();
         let veiculosFormatados: Array<IVeiculo> = [];
 
-        veiculos.forEach(async (item) => veiculosFormatados.push(model.convertObjectIntoIVeiculo(item)));
+        veiculos.forEach(async (item) => veiculosFormatados.push(service.convertObjectIntoIVeiculo(item)));
 
         return veiculosFormatados;
     };
 
     async findRecordById(id: string): Promise<IVeiculo> {
-       return model.convertObjectIntoIVeiculo(await model.findRecordById(id)); 
+       return service.convertObjectIntoIVeiculo(await service.findRecordById(id)); 
     };
 };
 
