@@ -34,10 +34,6 @@ class VendasService extends DatabaseService{
     return venda;
   }
 
-  async vendasByVendedor(id: string): Promise<any>{
-    const vendas = this.getCollection();
-    return vendas.find({ "vendedor": ObjectId(id) });
-  }
 
 };
 export default VendasService;

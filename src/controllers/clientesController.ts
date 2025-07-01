@@ -12,11 +12,22 @@ class ClientesController implements ICollectionController{
         this.service = new ClientesService();
     }
 
-    async findAllRecords(): Promise<Array<any>> {
-        return await this.service.findRecords();
+        async findAllRecords(): Promise<Array<any>> {
+        let consulta = await this.service.findRecords();
+        let consultaFormatada: Array<any> = [];
+        consulta.forEach( item =>{
+            consultaFormatada.push( this.service.convertObjectIntoICliente(item));
+        });
+
+        if(consulta){
+            return consultaFormatada;
+        }
+
+        return [] 
     };
     async findRecordById(id: string): Promise<any> {
-        return await this.service.findRecordById(id); 
+        let consulta = await this.service.findRecordById(id); 
+        return this.service.convertObjectIntoICliente(consulta);
     };
 };
 
