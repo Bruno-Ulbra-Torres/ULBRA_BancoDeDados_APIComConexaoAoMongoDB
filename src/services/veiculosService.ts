@@ -5,8 +5,7 @@ import DatabaseService from "./databaseService.ts";
 class VeiculosService extends DatabaseService{
 
   constructor(){
-    super();
-    this.collection = "veiculos"
+    super("veiculos");
   }
 
   convertObjectIntoIVeiculo(nonFormatedObject: any): IVeiculo {

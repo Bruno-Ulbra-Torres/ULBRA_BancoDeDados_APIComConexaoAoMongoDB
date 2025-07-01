@@ -6,23 +6,17 @@ const service = new FuncionariosService;
 
 class FuncionariosController implements ICollectionController{
 
-    collectionservice: FuncionariosService;
+     private service: FuncionariosService;
 
     constructor(){
-        this.collectionservice = new FuncionariosService();
+        this.service = new FuncionariosService();
     }
 
-    async findAllRecords(): Promise<Array<IFuncionario>> {
-        let funcionarios: Array<any> = await service.findRecords();
-        let funcionariosFormatados: Array<IFuncionario> = [];
-        
-        funcionarios.forEach(item => funcionariosFormatados.push(service.convertObjectIntoIFuncionario(item)));
-      
-        return funcionariosFormatados;
+    async findAllRecords(): Promise<Array<any>> {
+        return await this.service.findRecords();
     };
-
-    async findRecordById(id: string): Promise<IFuncionario> {
-        return service.convertObjectIntoIFuncionario(await service.findRecordById(id));
+    async findRecordById(id: string): Promise<any> {
+        return await this.service.findRecordById(id); 
     };
 };
 

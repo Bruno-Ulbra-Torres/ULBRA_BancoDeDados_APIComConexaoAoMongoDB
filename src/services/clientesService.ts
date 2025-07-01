@@ -5,8 +5,7 @@ import DatabaseService from "./databaseService.ts";
 class ClienteService extends DatabaseService{
 
   constructor(){
-    super();
-    this.collection = "clientes"
+    super("clientes");
   }
 
   convertObjectIntoICliente(nonFormatedObject: any): ICliente {

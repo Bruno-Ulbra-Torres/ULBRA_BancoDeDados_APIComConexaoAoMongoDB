@@ -4,8 +4,7 @@ import DatabaseService from "./databaseService.ts";
 class FuncionariosService extends DatabaseService{
 
   constructor(){
-    super();
-    this.collection = "funcionarios"
+    super("funcionarios");
   }
 
   convertObjectIntoIFuncionario(nonFormatedObject: any): IFuncionario {

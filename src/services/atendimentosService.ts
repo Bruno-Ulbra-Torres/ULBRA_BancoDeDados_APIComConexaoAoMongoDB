@@ -15,8 +15,7 @@ class AtendimentosService extends DatabaseService{
   private cliente: ClientesController;
 
   constructor(){
-    super();
-    this.collection = "atendimentos"
+    super("atendimentos");
     this.funcionario = new FuncionariosController();
     this.veiculo = new VeiculosController();
     this.cliente = new ClientesController();

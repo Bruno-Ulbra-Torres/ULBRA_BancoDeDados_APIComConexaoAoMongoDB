@@ -1,3 +1,4 @@
+import { MongoClient, ObjectId } from "mongodb";
 import ClientesController from "../controllers/clientesController.ts";
 import FuncionariosController from "../controllers/funcionariosController.ts";
 import VeiculosController from "../controllers/veiculosController.ts";
@@ -15,8 +16,7 @@ class VendasService extends DatabaseService{
   private cliente: ClientesController;
 
   constructor(){
-    super();
-    this.collection = "vendas"
+    super("vendas");
     this.funcionario = new FuncionariosController();
     this.veiculo = new VeiculosController();
     this.cliente = new ClientesController();
@@ -34,6 +34,10 @@ class VendasService extends DatabaseService{
     return venda;
   }
 
+  async vendasByVendedor(id: string): Promise<any>{
+    const vendas = this.getCollection();
+    return vendas.find({ "vendedor": ObjectId(id) });
+  }
 
 };
 export default VendasService;

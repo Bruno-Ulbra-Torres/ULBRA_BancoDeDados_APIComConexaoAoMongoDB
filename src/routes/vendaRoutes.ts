@@ -35,6 +35,23 @@ const vendaRoutes = (app: Express)=>{
             res.status(404).send(`\nHouve um erro na requisição:\n ${error}`);
         }
     });
+
+    app.get('/api/vendas/vendedor/:id', async (req: Request, res: Response) =>{
+
+        let id =  req.params.id;
+
+        if(id == null){
+            res.status(404).send(`\nHouve um erro na requisição, com o ID`);
+        }
+
+        try{
+            const venda: Array<any> = await vendasController.findVendaByVendedor(id);
+            res.status(200).send(venda);
+        }
+        catch(error: any){
+            res.status(404).send(`\nHouve um erro na requisição:\n ${error}`);
+        }
+    });
     
 }
 
