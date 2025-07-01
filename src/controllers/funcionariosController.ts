@@ -1,30 +1,33 @@
-import FuncionariosModel from "../models/funcionariosModel.ts";
+import FuncionariosService from "../services/funcionariosService.ts";
 import ICollectionController from "../interfaces/ICollectionController.ts";
+import IFuncionario from "../interfaces/documents/IFuncionario.ts";
 
-const model = new FuncionariosModel;
+const service = new FuncionariosService;
 
 class FuncionariosController implements ICollectionController{
 
-    collectionModel: FuncionariosModel;
+     private service: FuncionariosService;
 
     constructor(){
-        this.collectionModel = new FuncionariosModel();
+        this.service = new FuncionariosService();
     }
 
-    async findAllRecords(): Promise<Array<any>> {
-        let funcionariosFormatados: Array<any> = await model.findRecords();
+        async findAllRecords(): Promise<Array<any>> {
+        let consulta = await this.service.findRecords();
+        let consultaFormatada: Array<any> = [];
+        consulta.forEach( item =>{
+            consultaFormatada.push( this.service.convertObjectIntoIFuncionario(item));
+        });
 
-        //TODO: formatar retorno
+        if(consulta){
+            return consultaFormatada;
+        }
 
-        return funcionariosFormatados;
+        return [] 
     };
-
     async findRecordById(id: string): Promise<any> {
-        let funcionarioFormatado = model.findRecordById(id);
-
-        //TODO: formatar retorno
-
-        return funcionarioFormatado;
+        let consulta = await this.service.findRecordById(id); 
+        return this.service.convertObjectIntoIFuncionario(consulta);
     };
 };
 

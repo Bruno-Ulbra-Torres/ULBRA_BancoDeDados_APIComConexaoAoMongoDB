@@ -8,8 +8,11 @@ const vendaRoutes = (app: Express)=>{
 
     app.get('/api/vendas', async (req: Request, res: Response) =>{
         try{
-            const listVendas: Array<IVenda> = await vendasController.findAllRecords();
+
+            let listVendas: Array<IVenda> = [];
+            listVendas = await vendasController.findAllRecords();
             res.status(200).send(listVendas);
+
         }
         catch(error: any){
             res.status(404).send(`\nHouve um erro na requisição:\n ${error}`);
@@ -20,13 +23,30 @@ const vendaRoutes = (app: Express)=>{
 
         let id =  req.params.id;
 
-        if(id == null || id == undefined){
+        if(id == null){
             res.status(404).send(`\nHouve um erro na requisição, com o ID`);
         }
 
         try{
-            const listVendas: Array<IVenda> = await vendasController.findRecordById(id);
-            res.status(200).send(listVendas);
+            const venda: IVenda = await vendasController.findRecordById(id);
+            res.status(200).send(venda);
+        }
+        catch(error: any){
+            res.status(404).send(`\nHouve um erro na requisição:\n ${error}`);
+        }
+    });
+
+    app.get('/api/vendas/vendedor/:id', async (req: Request, res: Response) =>{
+
+        let id =  req.params.id;
+
+        if(id == null){
+            res.status(404).send(`\nHouve um erro na requisição, com o ID`);
+        }
+
+        try{
+            const venda: Array<any> = await vendasController.findVendaByVendedor(id);
+            res.status(200).send(venda);
         }
         catch(error: any){
             res.status(404).send(`\nHouve um erro na requisição:\n ${error}`);

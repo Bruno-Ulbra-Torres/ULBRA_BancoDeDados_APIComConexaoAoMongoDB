@@ -1,30 +1,33 @@
-import ClientesModel from "../models/clientesModel.ts";
+import ClientesService from "../services/clientesService.ts";
 import ICollectionController from "../interfaces/ICollectionController.ts";
+import ICliente from "../interfaces/documents/ICliente.ts";
 
-const model = new ClientesModel;
+const service = new ClientesService;
 
 class ClientesController implements ICollectionController{
 
-    collectionModel: ClientesModel;
+     private service: ClientesService;
 
     constructor(){
-        this.collectionModel = new ClientesModel();
+        this.service = new ClientesService();
     }
 
-    async findAllRecords(): Promise<Array<any>> {
-        let clientesFormatados: Array<any> = await model.findRecords();
+        async findAllRecords(): Promise<Array<any>> {
+        let consulta = await this.service.findRecords();
+        let consultaFormatada: Array<any> = [];
+        consulta.forEach( item =>{
+            consultaFormatada.push( this.service.convertObjectIntoICliente(item));
+        });
 
-        //TODO: formatar retorno
+        if(consulta){
+            return consultaFormatada;
+        }
 
-        return clientesFormatados;
+        return [] 
     };
-
     async findRecordById(id: string): Promise<any> {
-        let clienteFormatado = model.findRecordById(id);
-
-        //TODO: formatar retorno
-
-        return clienteFormatado;
+        let consulta = await this.service.findRecordById(id); 
+        return this.service.convertObjectIntoICliente(consulta);
     };
 };
 

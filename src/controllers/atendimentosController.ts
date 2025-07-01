@@ -1,30 +1,33 @@
-import AtendimentosModel from "../models/atendimentosModel.ts";
+import AtendimentosService from "../services/atendimentosService.ts";
 import ICollectionController from "../interfaces/ICollectionController.ts";
+import IAtendimento from "../interfaces/documents/IAtendimento.ts";
 
-const model = new AtendimentosModel;
+const service = new AtendimentosService;
 
 class AtendimentosController implements ICollectionController{
 
-    collectionModel: AtendimentosModel;
+    private service: AtendimentosService;
 
     constructor(){
-        this.collectionModel = new AtendimentosModel();
+        this.service = new AtendimentosService();
     }
 
     async findAllRecords(): Promise<Array<any>> {
-        let atendimentosFormatados: Array<any> = await model.findRecords();
+        let consulta = await this.service.findRecords();
+        let consultaFormatada: Array<any> = [];
+        consulta.forEach( async item =>{
+            consultaFormatada.push( await this.service.convertObjectIntoIAtendimento(item));
+        });
 
-        //TODO: formatar retorno
+        if(consulta){
+            return consultaFormatada;
+        }
 
-        return atendimentosFormatados;
+        return [] 
     };
-
     async findRecordById(id: string): Promise<any> {
-        let atendimentoFormatado = model.findRecordById(id);
-
-        //TODO: formatar retorno
-
-        return atendimentoFormatado;
+        let consulta = await this.service.findRecordById(id); 
+        return await this.service.convertObjectIntoIAtendimento(consulta);
     };
 };
 

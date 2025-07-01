@@ -25,8 +25,8 @@ const funcionarioRoutes = (app: Express)=>{
         }
 
         try{
-            const listFuncionarios: Array<IFuncionario> = await funcionariosController.findRecordById(id);
-            res.status(200).send(listFuncionarios);
+            const funcionario: IFuncionario = await funcionariosController.findRecordById(id);
+            res.status(200).send(funcionario);
         }
         catch(error: any){
             res.status(404).send(`\nHouve um erro na requisição:\n ${error}`);
